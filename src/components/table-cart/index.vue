@@ -12,7 +12,7 @@
       </thead>
       <tbody>
 
-      <table-cart-item/>
+      <table-cart-item v-for="product in cart" :key="product.id"/>
 
       <tr class="thead-light">
         <th scope="row"></th>
@@ -28,9 +28,13 @@
 
 <script>
 import TableCartItem from './table-cart-item'
+import { mapState } from 'vuex'
 
 export default {
   name: 'table-cart',
-  components: { TableCartItem }
+  components: { TableCartItem },
+  methods: {
+    ...mapState('cart', ['cart'])
+  }
 }
 </script>

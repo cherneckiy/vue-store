@@ -9,7 +9,7 @@
           <span>price: {{ price }}$</span>
         </div>
         <div class="col-7 text-right">
-          <a href="#" class="btn btn-primary" @click.prevent="addProductInCart(id)">Add to cart</a>
+          <a href="#" class="btn btn-primary" @click.prevent="addProduct">Add to cart</a>
         </div>
       </div>
     </div>
@@ -18,7 +18,7 @@
 
 <script>
 import { ADD_PRODUCT_IN_CART } from '@/store/types/actions'
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 export default {
   name: 'product',
   props: {
@@ -39,10 +39,17 @@ export default {
       default: ''
     }
   },
+  computed: {
+    ...mapState('catalog', ['products'])
+  },
   methods: {
     ...mapActions('cart', {
       addProductInCart: ADD_PRODUCT_IN_CART
-    })
+    }),
+    addProduct () {
+      const product = this.products.find(product => product.id === this.id)
+      this.addProductInCart({ product, quantity: 1 })
+    }
   }
 }
 </script>
