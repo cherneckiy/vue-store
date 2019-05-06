@@ -25,7 +25,7 @@
         <th scope="row"></th>
         <th scope="row"></th>
         <th scope="row"></th>
-        <th scope="row">total: 200$</th>
+        <th scope="row">total: {{ total }}$</th>
       </tr>
       </tbody>
     </table>
@@ -35,13 +35,14 @@
 
 <script>
 import TableCartItem from './table-cart-item'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'table-cart',
   components: { TableCartItem },
   computed: {
-    ...mapState('cart', ['cart'])
+    ...mapState('cart', ['cart']),
+    ...mapGetters('cart', ['total'])
   }
 }
 </script>

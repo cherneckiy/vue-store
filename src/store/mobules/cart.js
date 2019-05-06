@@ -7,8 +7,7 @@ import { UPDATE_PRODUCTS_IN_CART } from '@/store/types/mutations'
 export default {
   namespaced: true,
   state: {
-    cart: [],
-    total: 0
+    cart: []
   },
   getters: {
     newProduct: () => (product, item = {}, quantity) => {
@@ -44,6 +43,9 @@ export default {
       }
 
       return [...cart, newProduct]
+    },
+    total: state => {
+      return state.cart.reduce((acc, value) => acc + value.total, 0)
     }
   },
   mutations: {
