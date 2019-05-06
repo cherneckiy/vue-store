@@ -9,7 +9,7 @@
           <span>price: {{ price }}$</span>
         </div>
         <div class="col-7 text-right">
-          <a href="#" class="btn btn-primary">Add to cart</a>
+          <a href="#" class="btn btn-primary" @click.prevent="addProductInCart(id)">Add to cart</a>
         </div>
       </div>
     </div>
@@ -17,9 +17,15 @@
 </template>
 
 <script>
+import { ADD_PRODUCT_IN_CART } from '@/store/types/actions'
+import { mapActions } from 'vuex'
 export default {
   name: 'product',
   props: {
+    id: {
+      type: String,
+      default: ''
+    },
     title: {
       type: String,
       default: ''
@@ -32,6 +38,11 @@ export default {
       type: String,
       default: ''
     }
+  },
+  methods: {
+    ...mapActions('cart', {
+      addProductInCart: ADD_PRODUCT_IN_CART
+    })
   }
 }
 </script>

@@ -10,7 +10,7 @@
     <div class="row" v-else>
 
       <div class="col-md-4 my-4" v-for="product in products" :key="product.id">
-        <product v-bind="product"/>
+        <product v-bind="product" />
       </div>
 
     </div>
