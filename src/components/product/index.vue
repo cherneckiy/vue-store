@@ -48,7 +48,7 @@ export default {
     }),
     addProduct () {
       const product = this.products.find(product => product.id === this.id)
-      this.addProductInCart({ product, quantity: 1 })
+      this.addProductInCart(product)
     }
   }
 }

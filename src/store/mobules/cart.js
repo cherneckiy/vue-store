@@ -1,4 +1,8 @@
-import { ADD_PRODUCT_IN_CART } from '@/store/types/actions'
+import {
+  UPDATE_PRODUCT_IN_CART,
+  ADD_PRODUCT_IN_CART,
+  REMOVE_PRODUCT_IN_CART,
+  ALL_REMOVE_PRODUCT_IN_CART } from '@/store/types/actions'
 import { UPDATE_PRODUCTS_IN_CART } from '@/store/types/mutations'
 export default {
   namespaced: true,
@@ -48,11 +52,24 @@ export default {
     }
   },
   actions: {
-    [ADD_PRODUCT_IN_CART] ({ state, getters, commit }, { product, quantity }) {
+    [UPDATE_PRODUCT_IN_CART] ({ state, getters, commit }, { product, quantity }) {
       const item = state.cart.find(item => item.id === product.id)
       const newProduct = getters.newProduct(product, item, quantity)
       const newProductInCart = getters.updateProducts(newProduct)
       commit(UPDATE_PRODUCTS_IN_CART, newProductInCart)
+    },
+
+    [ADD_PRODUCT_IN_CART] ({ dispatch }, product) {
+      dispatch(UPDATE_PRODUCT_IN_CART, { product, quantity: 1 })
+    },
+
+    [REMOVE_PRODUCT_IN_CART] ({ dispatch }, product) {
+      dispatch(UPDATE_PRODUCT_IN_CART, { product, quantity: -1 })
+    },
+
+    [ALL_REMOVE_PRODUCT_IN_CART] ({ state, dispatch }, product) {
+      const item = state.cart.find(item => item.id === product.id)
+      dispatch(UPDATE_PRODUCT_IN_CART, { product, quantity: -item.count })
     }
   }
 }
