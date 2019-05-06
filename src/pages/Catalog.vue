@@ -8,9 +8,6 @@
     </div>
 
     <div class="row" v-else>
-      <code>
-        {{ cart }}
-      </code>
 
       <div class="col-md-4 my-4" v-for="product in products" :key="product.id">
         <product v-bind="product" />
@@ -29,8 +26,7 @@ export default {
   name: 'catalog',
   components: { Product },
   computed: {
-    ...mapState('catalog', ['products', 'loading']),
-    ...mapState('cart', ['cart'])
+    ...mapState('catalog', ['products', 'loading'])
   },
   methods: {
     ...mapActions('catalog', {
