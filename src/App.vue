@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <header-app/>
     <router-view/>
   </div>
 </template>
@@ -12,3 +9,10 @@
   @import "~bootstrap/dist/css/bootstrap.css";
   @import "~@fortawesome/fontawesome-free/css/all.css";
 </style>
+<script>
+import HeaderApp from '@/components/header-app/index'
+export default {
+  components: { HeaderApp }
+}
+
+</script>
