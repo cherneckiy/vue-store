@@ -18,8 +18,7 @@
       </ul>
       <div>
         <router-link to="/cart">
-          <i class="fas fa-shopping-cart"></i>
-          Total: {{ total }}$
+          <i class="fas fa-shopping-cart"></i> Total: {{ total }}$
         </router-link>
       </div>
     </div>
@@ -28,6 +27,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+
 export default {
   name: 'header-app',
   computed: {

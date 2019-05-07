@@ -19,6 +19,7 @@
 <script>
 import { ADD_PRODUCT_IN_CART } from '@/store/types/actions'
 import { mapActions, mapState } from 'vuex'
+
 export default {
   name: 'product',
   props: {

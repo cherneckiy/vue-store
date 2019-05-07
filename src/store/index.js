@@ -10,13 +10,7 @@ export default new Vuex.Store({
     cart,
     catalog
   },
-  state: {
-
-  },
-  mutations: {
-
-  },
-  actions: {
-
-  }
+  state: {},
+  mutations: {},
+  actions: {}
 })

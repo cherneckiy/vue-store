@@ -14,10 +14,11 @@
       </thead>
       <tbody>
 
-      <table-cart-item v-for="(product, index) in cart"
-                       :key="product.id"
-                       :product="product"
-                       :index="index"/>
+      <table-cart-item
+        v-for="(product, index) in cart"
+        :key="product.id"
+        :product="product"
+        :index="index"/>
 
       <tr class="thead-light">
         <th scope="row"></th>

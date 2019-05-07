@@ -8,11 +8,9 @@
     </div>
 
     <div class="row" v-else>
-
       <div class="col-md-4 my-4" v-for="product in products" :key="product.id">
         <product v-bind="product" />
       </div>
-
     </div>
 
   </div>
@@ -22,6 +20,7 @@
 import Product from '@/components/product/index'
 import { mapState, mapActions } from 'vuex'
 import { GET_ALL_PRODUCTS } from '@/store/types/actions'
+
 export default {
   name: 'catalog',
   components: { Product },

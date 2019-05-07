@@ -1,6 +1,7 @@
 import Services from '@/services/index'
 import { ALL_PRODUCTS } from '@/store/types/mutations'
 import { GET_ALL_PRODUCTS } from '@/store/types/actions'
+
 const service = new Services()
 
 export default {

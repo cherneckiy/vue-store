@@ -3,7 +3,10 @@ import {
   ADD_PRODUCT_IN_CART,
   REMOVE_PRODUCT_IN_CART,
   ALL_REMOVE_PRODUCT_IN_CART } from '@/store/types/actions'
-import { UPDATE_PRODUCTS_IN_CART, WRITE_TO_LOCAL_STORAGE } from '@/store/types/mutations'
+
+import {
+  UPDATE_PRODUCTS_IN_CART,
+  WRITE_TO_LOCAL_STORAGE } from '@/store/types/mutations'
 
 const productsInCart = JSON.parse(window.localStorage.getItem('productsInCart'))
 
@@ -19,8 +22,7 @@ export default {
         title = product.title,
         price = product.price,
         total = 0,
-        count = 0
-      } = item
+        count = 0 } = item
       return {
         id,
         title,
@@ -65,6 +67,7 @@ export default {
       const item = state.cart.find(item => item.id === product.id)
       const newProduct = getters.newProduct(product, item, quantity)
       const newProductInCart = getters.updateProducts(newProduct)
+
       commit(UPDATE_PRODUCTS_IN_CART, newProductInCart)
       commit(WRITE_TO_LOCAL_STORAGE, { name: 'productsInCart', value: newProductInCart })
       commit(WRITE_TO_LOCAL_STORAGE, { name: 'totalInCart', value: getters.total })
@@ -79,8 +82,9 @@ export default {
     },
 
     [ALL_REMOVE_PRODUCT_IN_CART] ({ state, dispatch }, product) {
-      const item = state.cart.find(item => item.id === product.id)
-      dispatch(UPDATE_PRODUCT_IN_CART, { product, quantity: -item.count })
+      const { count } = state.cart.find(item => item.id === product.id)
+
+      dispatch(UPDATE_PRODUCT_IN_CART, { product, quantity: -count })
     }
   }
 }
