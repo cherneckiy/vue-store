@@ -3,11 +3,14 @@ import {
   ADD_PRODUCT_IN_CART,
   REMOVE_PRODUCT_IN_CART,
   ALL_REMOVE_PRODUCT_IN_CART } from '@/store/types/actions'
-import { UPDATE_PRODUCTS_IN_CART } from '@/store/types/mutations'
+import { UPDATE_PRODUCTS_IN_CART, WRITE_TO_LOCAL_STORAGE } from '@/store/types/mutations'
+
+const productsInCart = JSON.parse(window.localStorage.getItem('productsInCart'))
+
 export default {
   namespaced: true,
   state: {
-    cart: []
+    cart: productsInCart !== null ? productsInCart : []
   },
   getters: {
     newProduct: () => (product, item = {}, quantity) => {
@@ -44,13 +47,17 @@ export default {
 
       return [...cart, newProduct]
     },
-    total: state => {
+    total (state) {
       return state.cart.reduce((acc, value) => acc + value.total, 0)
     }
   },
   mutations: {
     [UPDATE_PRODUCTS_IN_CART] (state, newProductInCart) {
       state.cart = newProductInCart
+    },
+    [WRITE_TO_LOCAL_STORAGE] (state, { name, value }) {
+      localStorage.removeItem(name)
+      localStorage.setItem(name, JSON.stringify(value))
     }
   },
   actions: {
@@ -59,6 +66,8 @@ export default {
       const newProduct = getters.newProduct(product, item, quantity)
       const newProductInCart = getters.updateProducts(newProduct)
       commit(UPDATE_PRODUCTS_IN_CART, newProductInCart)
+      commit(WRITE_TO_LOCAL_STORAGE, { name: 'productsInCart', value: newProductInCart })
+      commit(WRITE_TO_LOCAL_STORAGE, { name: 'totalInCart', value: getters.total })
     },
 
     [ADD_PRODUCT_IN_CART] ({ dispatch }, product) {
