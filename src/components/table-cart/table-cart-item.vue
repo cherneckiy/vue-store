@@ -23,15 +23,18 @@
     </td>
   </tr>
 </template>
+
 <script>
 import { mapActions } from 'vuex'
 import {
   ADD_PRODUCT_IN_CART,
   REMOVE_PRODUCT_IN_CART,
-  ALL_REMOVE_PRODUCT_IN_CART } from '@/store/types/actions'
+  ALL_REMOVE_PRODUCT_IN_CART
+} from '@/store/types/actions'
 
 export default {
   name: 'table-cart-item',
+
   props: {
     product: {
       type: Object,
@@ -42,6 +45,7 @@ export default {
       default: 0
     }
   },
+
   methods: {
     ...mapActions('cart', {
       addProductInCart: ADD_PRODUCT_IN_CART,

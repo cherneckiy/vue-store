@@ -22,6 +22,7 @@ import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'product',
+
   props: {
     id: {
       type: String,
@@ -40,21 +41,21 @@ export default {
       default: ''
     }
   },
+
   computed: {
     ...mapState('catalog', ['products'])
   },
+
   methods: {
     ...mapActions('cart', {
       addProductInCart: ADD_PRODUCT_IN_CART
     }),
+
     addProduct () {
       const product = this.products.find(product => product.id === this.id)
       this.addProductInCart(product)
     }
   }
+
 }
 </script>
-
-<style scoped>
-
-</style>

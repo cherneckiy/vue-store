@@ -40,7 +40,9 @@ import { mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'table-cart',
+
   components: { TableCartItem },
+
   computed: {
     ...mapState('cart', ['cart']),
     ...mapGetters('cart', ['total'])

@@ -30,6 +30,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'header-app',
+
   computed: {
     ...mapGetters('cart', ['total'])
   }

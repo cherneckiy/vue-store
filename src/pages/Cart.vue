@@ -4,14 +4,19 @@
     <TableCart v-else />
   </div>
 </template>
+
 <script>
 import TableCart from '@/components/table-cart/index'
 import { mapState } from 'vuex'
+
 export default {
   name: 'cart',
+
   components: { TableCart },
+
   computed: {
     ...mapState('cart', ['cart']),
+
     hasCart () {
       return !this.cart.length > 0
     }
