@@ -33,7 +33,8 @@ export default {
         title,
         price,
         count: count + quantity,
-        total: total + product.price * quantity
+        total: total + product.price * quantity,
+        date: Date.now()
       }
     },
 
@@ -58,6 +59,10 @@ export default {
 
     total (state) {
       return state.cart.reduce((acc, value) => acc + value.total, 0)
+    },
+
+    carts (state) {
+      return state.cart.sort((a, b) => a.date > b.date ? -1 : 1)
     }
   },
 

@@ -15,7 +15,7 @@
       <tbody>
 
       <table-cart-item
-        v-for="(product, index) in cart"
+        v-for="(product, index) in carts"
         :key="product.id"
         :product="product"
         :index="index"/>
@@ -36,7 +36,7 @@
 
 <script>
 import TableCartItem from './table-cart-item'
-import { mapState, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'table-cart',
@@ -44,8 +44,7 @@ export default {
   components: { TableCartItem },
 
   computed: {
-    ...mapState('cart', ['cart']),
-    ...mapGetters('cart', ['total'])
+    ...mapGetters('cart', ['total', 'carts'])
   }
 }
 </script>
